@@ -30,6 +30,7 @@ spl_autoload_register( function ( string $class ) {
         'CR_Tracker'  => CR_PLUGIN_DIR . 'includes/class-tracker.php',
         'CR_Cron'     => CR_PLUGIN_DIR . 'includes/class-cron.php',
         'CR_Emailer'  => CR_PLUGIN_DIR . 'includes/class-emailer.php',
+        'CR_Updater'  => CR_PLUGIN_DIR . 'includes/class-updater.php',
         'CR_Admin'    => CR_PLUGIN_DIR . 'admin/class-admin.php',
     ];
     if ( isset( $map[ $class ] ) ) {
@@ -55,6 +56,7 @@ add_action( 'plugins_loaded', function () {
 
     CR_Tracker::init();
     CR_Cron::init();
+    CR_Updater::init();
 
     if ( is_admin() ) {
         CR_Admin::init();
