@@ -1,0 +1,133 @@
+/* Cart Recovery — Exit Intent Popup */
+#cr-exit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+#cr-exit-overlay.cr-exit-visible {
+    background: rgba(0,0,0,0.6);
+    pointer-events: auto;
+}
+#cr-exit-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 36px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    transform: translateY(16px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    box-sizing: border-box;
+}
+#cr-exit-overlay.cr-exit-visible #cr-exit-box {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+#cr-exit-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.4em;
+    cursor: pointer;
+    color: #a8a29e;
+    line-height: 1;
+    padding: 4px 6px;
+}
+#cr-exit-close:hover { color: #1c1917; }
+#cr-exit-icon { font-size: 2.5em; margin-bottom: 14px; line-height: 1; }
+#cr-exit-box h2 {
+    margin: 0 0 10px;
+    font-size: 1.35em;
+    color: #1c1917;
+    font-weight: 700;
+    line-height: 1.3;
+}
+#cr-exit-box .cr-exit-sub {
+    color: #57534e;
+    font-size: 0.9em;
+    margin: 0 0 22px;
+    line-height: 1.6;
+}
+#cr-exit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+#cr-exit-email {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #d6d3d1;
+    border-radius: 6px;
+    font-size: 0.95em;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+#cr-exit-email:focus { border-color: #1c1917; }
+#cr-exit-email.cr-error { border-color: #dc2626; }
+#cr-exit-form button[type=submit] {
+    width: 100%;
+    padding: 12px;
+    background: #1c1917;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+#cr-exit-form button[type=submit]:hover:not(:disabled) { background: #44403c; }
+#cr-exit-form button[type=submit]:disabled { opacity: 0.6; cursor: not-allowed; }
+#cr-exit-gdpr {
+    font-size: 0.73em;
+    color: #a8a29e;
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+#cr-exit-gdpr-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+    font-size: 0.8em;
+    color: #78716c;
+    line-height: 1.5;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+#cr-exit-gdpr-label input[type=checkbox] {
+    margin-top: 2px;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+#cr-exit-gdpr-label.cr-error { color: #dc2626; }
+#cr-exit-gdpr-label.cr-error input { outline: 2px solid #dc2626; }
+#cr-exit-dismiss {
+    font-size: 0.8em;
+    color: #a8a29e;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 4px;
+}
+#cr-exit-dismiss:hover { color: #57534e; text-decoration: underline; }
+#cr-exit-success { padding: 10px 0; }
+#cr-exit-success .cr-exit-tick { font-size: 3em; line-height: 1; margin-bottom: 12px; }
+#cr-exit-success h2 { color: #1c1917; margin: 0 0 8px; }
+#cr-exit-success p { color: #57534e; font-size: 0.9em; margin: 0; }
