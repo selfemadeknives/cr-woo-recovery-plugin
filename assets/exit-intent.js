@@ -29,10 +29,15 @@
         $overlay = $( '<div id="cr-exit-overlay">' );
         var $box = $( '<div id="cr-exit-box">' );
 
-        var gdprHtml = crExitIntent.gdprText
-            ? '<label id="cr-exit-gdpr-label"><input type="checkbox" id="cr-exit-gdpr-check" required> ' +
-              '<span>' + $( '<span>' ).text( crExitIntent.gdprText ).html() + '</span></label>'
-            : '';
+        var gdprHtml = '';
+        if ( crExitIntent.gdprText ) {
+            var gdprText = $( '<span>' ).text( crExitIntent.gdprText ).html();
+            var privacyLink = crExitIntent.privacyUrl
+                ? ' <a href="' + crExitIntent.privacyUrl + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.'
+                : '';
+            gdprHtml = '<label id="cr-exit-gdpr-label"><input type="checkbox" id="cr-exit-gdpr-check" required> ' +
+                       '<span>' + gdprText + privacyLink + '</span></label>';
+        }
 
         $box.html(
             '<button id="cr-exit-close" aria-label="Close">&times;</button>' +

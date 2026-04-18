@@ -261,12 +261,13 @@ class CR_Tracker {
         );
         $settings = get_option( 'cr_settings', [] );
         wp_localize_script( 'cr-exit-intent', 'crExitIntent', [
-            'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
-            'nonce'       => wp_create_nonce( 'cr_exit_intent' ),
-            'hasCart'     => true,
-            'hasEmail'    => $has_email,
-            'mobileDelay' => (int) ( $settings['exit_intent_mobile_delay'] ?? 120 ),
-            'gdprText'    => $settings['exit_intent_gdpr_text'] ?? 'I agree to receive one cart reminder email. I can unsubscribe at any time.',
+            'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
+            'nonce'        => wp_create_nonce( 'cr_exit_intent' ),
+            'hasCart'      => true,
+            'hasEmail'     => $has_email,
+            'mobileDelay'  => (int) ( $settings['exit_intent_mobile_delay'] ?? 120 ),
+            'gdprText'     => $settings['exit_intent_gdpr_text'] ?? 'I agree to receive one cart reminder email. I can unsubscribe at any time.',
+            'privacyUrl'   => 'https://selfemadeknives.co.uk/privacy-policy/',
         ] );
     }
 

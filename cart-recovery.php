@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Cart Recovery for WooCommerce
  * Description: Track abandoned carts, view customer details, and send personalised recovery emails — all from your WordPress admin.
- * Version:     1.1.0
+ * Version:     1.1.1
  * Author:      Your Shop
  * License:     GPL-2.0+
  * Text Domain: cr-woo-recovery
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'CR_VERSION',     '1.1.0' );
+define( 'CR_VERSION',     '1.1.1' );
 define( 'CR_PLUGIN_FILE', __FILE__ );
 define( 'CR_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
 define( 'CR_PLUGIN_URL',  plugin_dir_url( __FILE__ ) );
