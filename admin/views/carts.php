@@ -6,11 +6,13 @@ $show_all      = isset( $_GET['status'] ) && sanitize_key( $_GET['status'] ) ===
 $status_filter = isset( $_GET['status'] ) ? sanitize_key( $_GET['status'] ) : 'abandoned';
 $search        = sanitize_text_field( wp_unslash( $_GET['search'] ?? '' ) );
 $min_value     = (float) ( $_GET['min_value'] ?? 0 );
+$ip_filter     = filter_var( sanitize_text_field( wp_unslash( $_GET['ip'] ?? '' ) ), FILTER_VALIDATE_IP ) ?: '';
 
 $args = [];
 if ( ! $show_all )    $args['status']    = $status_filter;
 if ( $search )        $args['search']    = $search;
 if ( $min_value > 0 ) $args['min_value'] = $min_value;
+if ( $ip_filter )     $args['ip']        = $ip_filter;
 
 $carts    = CR_DB::get_carts( $args );
 $statuses = [ 'abandoned' => 'Abandoned', 'email_sent' => 'Email Sent', 'recovered' => 'Recovered', 'ignored' => 'Ignored', 'all' => 'All' ];
@@ -43,8 +45,11 @@ foreach ( $carts as $c ) {
             <input type="text" name="search" placeholder="Search name or email…" value="<?php echo esc_attr( $search ); ?>" class="regular-text">
             <input type="number" name="min_value" placeholder="Min £ value" value="<?php echo $min_value > 0 ? esc_attr( $min_value ) : ''; ?>" class="small-text" step="0.01">
             <button type="submit" class="button">Filter</button>
-            <?php if ( $search || $min_value > 0 ) : ?>
+            <?php if ( $search || $min_value > 0 || $ip_filter ) : ?>
             <a href="<?php echo esc_url( CR_Admin::admin_url( 'cr-carts', [ 'status' => $status_filter ] ) ); ?>" class="button">Clear</a>
+            <?php endif; ?>
+            <?php if ( $ip_filter ) : ?>
+            <span class="cr-badge cr-badge-warning" style="line-height:28px;">Filtered by IP: <strong><?php echo esc_html( $ip_filter ); ?></strong></span>
             <?php endif; ?>
         </div>
     </form>

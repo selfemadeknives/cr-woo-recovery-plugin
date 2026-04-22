@@ -187,6 +187,14 @@ class CR_DB {
             $params[] = sanitize_text_field( $args['since'] );
         }
 
+        if ( ! empty( $args['ip'] ) ) {
+            $ip = filter_var( sanitize_text_field( $args['ip'] ), FILTER_VALIDATE_IP );
+            if ( $ip ) {
+                $where[]  = 'customer_ip = %s';
+                $params[] = $ip;
+            }
+        }
+
         $where_sql = implode( ' AND ', $where );
         $i         = $wpdb->prefix . 'cr_cart_items';
         $sql       = "SELECT c.*,

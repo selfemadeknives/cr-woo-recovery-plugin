@@ -127,6 +127,21 @@ if ( ! $default_tpl && ! empty( $templates ) ) $default_tpl = $templates[0];
                     <?php if ( $cart->woo_order_id ) : ?>
                         <dt>Order</dt><dd><a href="<?php echo esc_url( admin_url( 'post.php?post=' . (int) $cart->woo_order_id . '&action=edit' ) ); ?>" target="_blank">#<?php echo (int) $cart->woo_order_id; ?></a></dd>
                     <?php endif; ?>
+                    <?php if ( ! empty( $cart->customer_ip ) ) :
+                        $ip_carts = CR_DB::get_carts( [ 'ip' => $cart->customer_ip ] );
+                        $ip_count = count( $ip_carts );
+                        $ip_url   = CR_Admin::admin_url( 'cr-carts', [ 'status' => 'all', 'ip' => $cart->customer_ip ] );
+                    ?>
+                        <dt>IP Address</dt>
+                        <dd>
+                            <code><?php echo esc_html( $cart->customer_ip ); ?></code>
+                            <?php if ( $ip_count > 1 ) : ?>
+                                &nbsp;<a href="<?php echo esc_url( $ip_url ); ?>" class="cr-badge cr-badge-warning" style="text-decoration:none;">
+                                    <?php echo (int) $ip_count; ?> carts from this IP
+                                </a>
+                            <?php endif; ?>
+                        </dd>
+                    <?php endif; ?>
                     <dt>Status</dt><dd><?php echo cr_status_badge( $cart->status ); // phpcs:ignore ?></dd>
                 </div>
             </div>
